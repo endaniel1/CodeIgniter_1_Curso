@@ -5,9 +5,8 @@ $routes = Services::routes(true);
 
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
-if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
-{
-	require SYSTEMPATH . 'Config/Routes.php';
+if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
+    require SYSTEMPATH . 'Config/Routes.php';
 }
 
 /**
@@ -30,8 +29,12 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
-
+$routes->get('/', 'MiControlador::index');
+$routes->get('/nuevo', 'MiControlador::formulario');
+$routes->get('/usuario/nuevo', 'MiControlador::formulario');
+//el el codigo de arriba cambiamos las rutas q tiene Codeigniter por defecto a otras
+//get() resive el nombre de la ruta, despues el nombre del controlador q va a funcionar esa ruta y con los "::" decimos el metodo q va a ejecutar
+//existen varias pero utilizamos aqui el metodo get
 /**
  * --------------------------------------------------------------------
  * Additional Routing
@@ -45,7 +48,6 @@ $routes->get('/', 'Home::index');
  * You will have access to the $routes object within that file without
  * needing to reload it.
  */
-if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php'))
-{
-	require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
+if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
+    require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
